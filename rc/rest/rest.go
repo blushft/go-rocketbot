@@ -17,22 +17,17 @@ var (
 )
 
 type client struct {
-	opts  rc.Options
+	opts  *rc.Options
 	auth  *auth
 	httpc *resty.Client
 	hookc *webhook.Client
 }
 
 func NewClient(opts ...rc.Option) rc.Client {
-	dopts := rc.Options{
-		URL:      defaultURL,
-		APIPath:  defaultAPIPath,
-		Channels: make([]string, 0),
-		Hooks:    make(map[string]string),
-	}
+	dopts := rc.DefaultOptions()
 
 	for _, opt := range opts {
-		opt(&dopts)
+		opt(dopts)
 	}
 
 	c := &client{

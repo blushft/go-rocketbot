@@ -59,3 +59,12 @@ type Preferences struct {
 	MuteFocusedConversations    bool   `json:"muteFocusedConversations"`
 	NotificationsSoundVolume    int64  `json:"notificationsSoundVolume"`
 }
+
+type User struct {
+	ID           string `json:"_id,omitempty"`
+	Name         string `json:"name,omitempty"`
+	UserName     string `json:"username,omitempty"`
+	Status       string `json:"status,omitempty"`
+	Token        string `json:"token,omitempty"`
+	TokenExpires int64  `json:"tokenExpires,omitempty"`
+}

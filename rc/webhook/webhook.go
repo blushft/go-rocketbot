@@ -16,20 +16,15 @@ var (
 )
 
 type Client struct {
-	opts  rc.Options
+	opts  *rc.Options
 	httpc *resty.Client
 }
 
 func NewClient(opts ...rc.Option) *Client {
-	dopts := rc.Options{
-		URL:      defaultURL,
-		HookPath: defaultHookPath,
-		Channels: make([]string, 0),
-		Hooks:    make(map[string]string),
-	}
+	dopts := rc.DefaultOptions()
 
 	for _, opt := range opts {
-		opt(&dopts)
+		opt(dopts)
 	}
 
 	c := &Client{
